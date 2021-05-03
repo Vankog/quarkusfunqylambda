@@ -16,4 +16,13 @@
         CodeUri: ../build/function.zip
         MemorySize: 256
         Timeout: 15
-        Policies: AWSLambdaBasicExecutionRole
+        Policies:
+          - AWSLambdaBasicExecutionRole
+          - AWSLambdaDynamoDBExecutionRole
+        Events:
+          DynamoDBStream:
+            Type: DynamoDB
+            Properties:
+              BatchSize: 1
+              StartingPosition: TRIM_HORIZON
+              Stream: "arn:aws:dynamodb:eu-central-1:976076171170:table/vankog-funqy-books/stream/2021-05-03T12:19:39.173"
